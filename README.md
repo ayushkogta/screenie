@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# screenie
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+A movie management app that integrates with the TMDB API to fetch movie data, allows users to track watched movies, maintain a watchlist, take notes, categorize movies, and view visual stats through charts.
+## API Connection
 
-In the project directory, you can run:
+### Search
 
-### `npm start`
+Uses the TMDB API with an API key. Implements async functions to fetch and display movie data dynamically.
 
-Runs the app in the development mode.\
+### Filtering
+
+Filters are fetched from the API to ensure up-to-date filter options. Includes error handling for invalid inputs.
+
+### Top Charts
+
+Fetches top movies based on different criteria using a switch/case statement within `fetchTopMovies()`.
+
+## Data Storage
+
+### localStorage
+
+Data is persisted using `localStorage`, so the user’s movie data remains across sessions.
+
+### Storing and Retrieving Data
+
+React's `useEffect` monitors state changes and updates storage accordingly. Uses `useReducer` for consistent state management.
+
+### Movie Features
+
+Movies in the "watched" list can be annotated with notes, a watch date, and ratings. Ratings are interactive via UI.
+
+### Categorising Movies
+
+Custom categories can be added. Input is trimmed to prevent duplication from whitespace.
+
+## Program Interactions
+
+### Watched
+
+Sorted by date using `useContext` and `useState`. Enables ascending/descending order toggling.
+
+### Watchlist
+
+Similar to watched, but without sorting or additional metadata.
+
+### Notes
+
+Notes are added via `react-quill` rich text editor.
+
+### Recommendations
+
+Movies rated 5 stars trigger recommendation logic to suggest similar content.
+
+### Graph
+
+Built with `Recharts`. Uses `useMemo` to avoid redundant calculations. Displays a dynamic weekly movie-watching chart.
+
+## Tech Stack
+
+### Frontend
+
+- React
+- React Hooks: `useContext`, `useReducer`, `useEffect`, `useMemo`
+- React-Quill
+- Recharts
+- Conditional Rendering
+
+### Backend / Storage
+
+- localStorage
+- TMDB API
+- JSON Handling
+
+
+### Running the project
+
+enter `npm start`, which runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
