@@ -76,4 +76,4 @@ Built with `Recharts`. Uses `useMemo` to avoid redundant calculations. Displays 
 
 ### Running the project
 
-enter `npm start` and open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
+enter `npm start` and open [http://localhost:3000](http://localhost:3000) to view it in the browser.
