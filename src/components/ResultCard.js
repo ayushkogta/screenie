@@ -2,6 +2,10 @@ import React, { useContext } from "react";
 import Moment from "react-moment";
 import { GlobalContext } from "../context/GlobalState";
 
+/* Search result cards. Includes buttons to add to watchlist or watched
+And disables the buttons if the movie already exists in watched list
+*/
+
 export const ResultCard = ({ movie }) => {
   const {
     addMovieToWatchlist,

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
+/* filtering implementation for Add.js
+genre checkboxes + year range inputs
+*/
+
 const FilterMenu = ({ filters, onFilterChange }) => {
   const [localFilters, setLocalFilters] = useState(filters);
   const [genres, setGenres] = useState([]);

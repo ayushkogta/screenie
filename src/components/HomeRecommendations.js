@@ -1,6 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
+/* fetches tmdb recommendations based on the highest user rated movie
+basic error checking, like ensuring repeats don't come
+*/
+
 const HomeRecommendations = () => {
   const { watched, addMovieToWatchlist, watchlist } = useContext(GlobalContext);
   const [recommendations, setRecommendations] = useState([]);

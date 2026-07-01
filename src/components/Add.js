@@ -4,6 +4,10 @@ import Pagination from './Pagination';
 import FilterMenu from './FilterMenu';
 import { FaFilter } from 'react-icons/fa';
 
+/* Search Page
+Gets info from TMDB, allows for filtering, and includes pagination
+*/
+
 export const Add = () => {
   const apiKey = process.env.REACT_APP_TMDB_API_KEY;
 

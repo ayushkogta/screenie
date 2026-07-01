@@ -5,6 +5,10 @@ import CategoryManager from "./CategoryManager";
 import WeeklyWatchedChart from './WeeklyWatchedChart';
 import { BarChart2 } from 'lucide-react';
 
+/* shows watched movies
+Sorting feature, category filtering, weekly watched movies chart
+*/
+
 export const Watched = () => {
   const { watched, categories, movieCategories } = useContext(GlobalContext);
   const [selectedCategory, setSelectedCategory] = useState("all");

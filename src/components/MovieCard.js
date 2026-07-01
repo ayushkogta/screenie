@@ -5,6 +5,10 @@ import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import MovieControls from './MovieControls';
 import { GlobalContext } from '../context/GlobalState';
 
+/* renders each watchlist/watched movie
+different controls accessed depending on movie type (watchlist or watched)
+*/
+
 const MovieCard = ({ movie, type }) => {
   const { updateMovieRating, addMovieToWatchlist, watchlist, categories, movieCategories, setMovieCategory } = useContext(GlobalContext);
 

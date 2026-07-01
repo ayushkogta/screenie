@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import NotesCard from './NotesCard';
 
+/* allows for rich-text notes */
+
 export const Watched = () => {
   const { watched } = useContext(GlobalContext);
 

@@ -3,6 +3,8 @@ import { GlobalContext } from '../context/GlobalState';
 import { Link } from 'react-router-dom';
 import { FaChevronDown } from 'react-icons/fa';
 
+/* top charts with date filters */
+
 const HomeTopCharts = () => {
   const [topMovies, setTopMovies] = useState([]);
   const { addMovieToWatchlist, watchlist } = useContext(GlobalContext);

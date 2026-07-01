@@ -3,6 +3,11 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'rec
 import { GlobalContext } from '../context/GlobalState';
 import { X } from 'lucide-react';
 
+/* uses the usememo react hook to cache the movie watching results 
+this makes sure a new calculation isn't done every time the page is opened
+so the website remains smooth
+*/
+
 const WeeklyWatchedChart = ({ onClose }) => {
   const { watched } = useContext(GlobalContext);
 

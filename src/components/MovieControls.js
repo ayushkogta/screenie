@@ -3,6 +3,8 @@ import { GlobalContext } from '../context/GlobalState';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faTimes, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
+/* move movies between watchlist and watched, and offers removal too */
+
 export const MovieControls = ({ type, movie }) => {
   const {
     removeMovieFromWatchlist,

@@ -3,6 +3,10 @@ import HomeWatchlist from './HomeWatchlist';
 import HomeTopCharts from './HomeTopCharts';
 import HomeRecommendations from './HomeRecommendations';
 
+/* dashboard. 
+random film quote, recommendations, watchlist preview, top charts
+*/
+
 function Home() {
   const [quote, setQuote] = useState('');
   const [author, setAuthor] = useState('');

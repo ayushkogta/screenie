@@ -4,6 +4,11 @@ import 'react-quill/dist/quill.snow.css';
 import { GlobalContext } from '../context/GlobalState';
 import DOMPurify from 'dompurify';
 
+/* react-quill implementation. 
+also uses DOMPurify to ensure security for user input (e.g. users can't type SQL to break things)
+*/
+
+
 const NotesCard = ({ movie }) => {
   const [showEditor, setShowEditor] = useState(false);
   const [notes, setNotes] = useState('');
