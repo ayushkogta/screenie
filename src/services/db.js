@@ -7,28 +7,28 @@ function movieToRow(movie) {
     title: movie.title ?? null,
     poster_path: movie.poster_path ?? null,
     overview: movie.overview ?? null,
-    release_date: movie.release_date || null,
+    release_date: movie.release_date ? movie.release_date : null, // "" -> null
     genre_ids: movie.genre_ids ?? null,
   };
 }
 
 // combine movie row + user-specific data into app-ready object
-function rowToMovie(movieRow, userRow) {
+function rowToMovie(m, userMovie) {
   const base = {
-    id: movieRow.id,
-    title: movieRow.title,
-    poster_path: movieRow.poster_path,
-    overview: movieRow.overview,
-    release_date: movieRow.release_date ?? "",
-    genre_ids: movieRow.genre_ids ?? [],
+    id: m.id,
+    title: m.title,
+    poster_path: m.poster_path,
+    overview: m.overview,
+    release_date: m.release_date ?? "", // null -> ""
+    genre_ids: m.genre_ids ?? [],
   };
 
-  if (userRow.status === "watched") {
+  if (userMovie.status === "watched") {
     return {
       ...base,
-      dateWatched: userRow.date_watched,
-      notes: userRow.notes ?? "",
-      userRating: userRow.user_rating,
+      dateWatched: userMovie.date_watched,
+      notes: userMovie.notes ?? "",
+      userRating: userMovie.user_rating,
     };
   }
 
@@ -39,7 +39,7 @@ function rowToMovie(movieRow, userRow) {
 async function upsertMovie(movie) {
   const { error } = await supabase
     .from("movies")
-    .upsert(movieToRow(movie), { onConflict: "id" });
+    .upsert(movieToRow(movie), { onConflict: "id", ignoreDuplicates: true });
 
   if (error) throw error;
 }
@@ -49,7 +49,9 @@ export async function loadState(userId) {
   const [moviesRes, catsRes] = await Promise.all([
     supabase
       .from("user_movies")
-      .select("status, date_watched, notes, user_rating, movies(*), categories(name)")
+      .select(
+        "status, date_watched, notes, user_rating, movies(*), categories(name)"
+      )
       .eq("user_id", userId)
       .order("added_at", { ascending: false }),
 
