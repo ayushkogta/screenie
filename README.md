@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# SupaScreenie
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+A movie management app that integrates with the TMDB API to fetch movie data, allows users to track watched movies, maintain a watchlist, take notes, categorize movies, and view visual stats through charts.
+This branch uses a Supabase (Postgres) database behind authentication, so data can be synced between devices on login.
 
-In the project directory, you can run:
+## API Connection
 
-### `npm start`
+### Search
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Uses the TMDB API with an API key. Implements async functions to fetch and display movie data dynamically.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Filtering
 
-### `npm test`
+Filters are fetched from the API to ensure up-to-date filter options. Includes error handling for invalid inputs.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Top Charts
 
-### `npm run build`
+Fetches top movies based on different criteria using a switch/case statement within `fetchTopMovies()`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Authentication
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Login / Signup
+Users sign up and log in with an email and password, and there is one-time email confirmation. The app remembers you're logged in when you reload the page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Data Storage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Supabase (Postgres)
+Movie data is stored in a Supabase database tied to your account instead of the device it was saved on, so your watchlist, watched movies, notes, ratings and categories follow you across devices as long as you log in. This replaced `localStorage`, which only kept data on the one device.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Storing and Retrieving Data
+When you do something like add a movie or rate it, the change is saved to the database in the background. If a save fails, the Supabase data is displayed as a fallback.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Movie Features
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Movies in the "watched" list can be annotated with notes, a watch date, and ratings. Ratings are interactive via UI.
 
-## Learn More
+### Categorising Movies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Custom categories can be added. Input is trimmed to prevent duplication from whitespace.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Program Interactions
 
-### Code Splitting
+### Watched
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Sorted by date using `useContext` and `useState`. Enables ascending/descending order toggling.
 
-### Analyzing the Bundle Size
+### Watchlist
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Similar to watched, but without sorting or additional metadata.
 
-### Making a Progressive Web App
+### Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Notes are added via `react-quill` rich text editor.
 
-### Advanced Configuration
+### Recommendations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Movies rated 5 stars trigger recommendation logic to suggest similar content.
 
-### Deployment
+### Graph
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Built with `Recharts`. Uses `useMemo` to avoid redundant calculations. Displays a dynamic weekly movie-watching chart.
 
-### `npm run build` fails to minify
+## Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Frontend
+
+- React
+- React Hooks: `useContext`, `useReducer`, `useEffect`, `useMemo`
+- React-Quill
+- Recharts
+- Conditional Rendering
+
+### Backend / Storage
+
+- Supabase (Postgres, Auth, auto-generated REST API)
+- Row-Level Security
+- TMDB API
+- JSON Handling
+
+
+### Running the project
+
+Copy `.env.example` to `.env` and fill in the TMDB and Supabase keys, then run `supabase/schema.sql` in the Supabase SQL editor to create the tables and policies. Enter `npm start` and open [http://localhost:3000](http://localhost:3000) to view it in the browser.
