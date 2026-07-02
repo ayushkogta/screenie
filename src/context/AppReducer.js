@@ -1,6 +1,9 @@
 // eslint-disable-next-line
 export default (state, action) => {
   switch (action.type) {
+    case "HYDRATE":
+      // Replace all persisted slices with data loaded from Supabase.
+      return { ...state, ...action.payload };
     case "ADD_MOVIE_TO_WATCHLIST":
       return {
         ...state,
